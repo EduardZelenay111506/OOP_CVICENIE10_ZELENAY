@@ -1,5 +1,7 @@
 package sk.stuba.fei.uim.oop.oop_cvicenie10_zelenay;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,5 +32,10 @@ public class HelloController {
     @GetMapping("/body")
     public String body(@RequestBody HelloRequestBody body) {
         return "hello" + body.getName();
+    }
+
+    @GetMapping("/responseEntity")
+    public ResponseEntity<HelloResponse> helloResponse(){
+        return new ResponseEntity<>(new HelloResponse(counter++,"hello world"), HttpStatus.OK);
     }
 }
